@@ -26,12 +26,13 @@ class Admin extends Admin_Controller
 		$this->load->module_model('navigation', 'navigation_m');
 		$this->lang->load('pages');	
 	}
-
+	
 	// Admin: List all Pages
 	function index()
 	{
-  		//$this->data->languages =& $this->config->item('supported_languages');
-		$this->data->pages = $this->pages_m->get(array('order' => 'parent_id, title'));
+		$pages = $this->pages_m->getOrphans();
+		$this->data->pages =& $pages;
+		
     	$this->layout->create('admin/index', $this->data);
  	}
     

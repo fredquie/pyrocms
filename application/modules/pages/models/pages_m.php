@@ -2,6 +2,8 @@
 
 class Pages_m extends Model {
 
+	private $default_order = 'title ASC';
+	
     public function getById($id = 0)
     {
     	$this->db->where('id', $id);
@@ -53,20 +55,22 @@ class Pages_m extends Model {
         return $this->db->get()->row();
     }
     
-	// Count the amount of pages with param X
-	function countPages($params = array())
-	{
-		$results = $this->get($params);
-		
-		if($results == FALSE)
-		{
-			return 0; 
-		}
-		else
-		{
-			return count($results);
-		}
-	}
+    // Return pages by a parent ID
+    function getByParentId($id = 0)
+    {
+    	// Dont return body
+    	$this->db->select('p1.*, (SELECT count(p1.id) FROM pages p2 WHERE p1.id = p2.parent_id) as num_children');
+        $this->db->group_by('p1.id');
+        $this->db->order_by('p1.'.$this->default_order);
+        
+        return $this->db->get('pages p1')->result();
+    }
+    
+    // Return pages with no parents
+    function getOrphans()
+    {
+    	return $this->getByParentId();
+    }
     
     // Return an object of objects containing page data
     function get($params = array())
@@ -81,6 +85,21 @@ class Pages_m extends Model {
     
         return $this->db->get('pages')->result();
     }
+    
+	// Count the amount of pages with param X
+	function countPages($params = array())
+	{
+		$results = $this->get($params);
+		
+		if($results == FALSE)
+		{
+			return 0; 
+		}
+		else
+		{
+			return count($results);
+		}
+	}
     
     // Create a new page
     function create($input = array())
