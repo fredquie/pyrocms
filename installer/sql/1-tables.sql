@@ -219,7 +219,7 @@ CREATE TABLE `settings` (
   `slug` varchar(30) collate utf8_unicode_ci NOT NULL,
   `title` varchar(100) collate utf8_unicode_ci NOT NULL,
   `description` text collate utf8_unicode_ci NOT NULL,
-  `type` set('text','textarea','select','select-multiple','radio','checkbox') collate utf8_unicode_ci NOT NULL,
+  `type` set('text','textarea','select','select-multiple','radio','checkbox','password') collate utf8_unicode_ci NOT NULL,
   `default` varchar(255) collate utf8_unicode_ci NOT NULL,
   `value` varchar(255) collate utf8_unicode_ci NOT NULL,
   `options` varchar(255) collate utf8_unicode_ci NOT NULL,
@@ -251,36 +251,4 @@ CREATE TABLE `staff` (
 
 CREATE TABLE `suppliers` (
   `id` int(11) NOT NULL auto_increment,
-  `slug` varchar(40) collate utf8_unicode_ci NOT NULL default '',
-  `title` varchar(40) collate utf8_unicode_ci NOT NULL default '',
-  `description` text collate utf8_unicode_ci NOT NULL,
-  `url` varchar(100) collate utf8_unicode_ci NOT NULL default '',
-  `image` varchar(40) collate utf8_unicode_ci default NULL,
-  `updated_on` varchar(11) collate utf8_unicode_ci NOT NULL default '0',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Supplier Information';
-
-
-CREATE TABLE `suppliers_categories` (
-  `supplier_id` int(11) NOT NULL default '0',
-  `category_id` int(11) NOT NULL default '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-CREATE TABLE `users` (
-  `id` smallint(5) unsigned NOT NULL auto_increment,
-  `email` varchar(40) collate utf8_unicode_ci NOT NULL default '',
-  `password` varchar(100) collate utf8_unicode_ci NOT NULL default '',
-  `salt` varchar(5) collate utf8_unicode_ci NOT NULL default '',
-  `first_name` varchar(40) collate utf8_unicode_ci NOT NULL,
-  `last_name` varchar(40) collate utf8_unicode_ci NOT NULL default '',
-  `role` varchar(40) collate utf8_unicode_ci NOT NULL,
-  `lang` varchar(2) collate utf8_unicode_ci NOT NULL,
-  `ip` varchar(11) collate utf8_unicode_ci NOT NULL,
-  `is_active` int(1) NOT NULL,
-  `activation_code` varchar(8) collate utf8_unicode_ci NOT NULL,
-  `created_on` int(11) NOT NULL,
-  `last_login` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Registered User Information';
+  `slug` varchar(40) collate utf8_unicode_c
