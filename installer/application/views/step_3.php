@@ -1,7 +1,7 @@
 <h2>Step 3: Set permissions</h2>
 <p>Before PyroCMS can be installed you need to make sure that certain files and folders are writeable, these files and folders are listed below.</p>
 <h3>Folder Permissions</h3>
-<p>The CHMOD values of the following folders must be changed to 777 (in some cases 775 works too).</p>
+<p>The file permissions (known as CHMOD on Linux/Unix servers) of the following folders and sub-folders must be changed to 777 (in some cases 775 works too).</p>
 <ul class="perm_list" id="perm_folders">
 	<li>codeigniter/cache <?php echo $perm_status['codeigniter/cache'] ? '- <span class="green">Writable</span>' : '- <span class="red">Not writable</span>'; ?></li>
 	<li>codeigniter/logs <?php echo $perm_status['codeigniter/logs'] ? '- <span class="green">Writable</span>' : '- <span class="red">Not writable</span>'; ?></li>
